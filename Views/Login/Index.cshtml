@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/Styles/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Styles/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link href="~/Styles/font-awesome.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="~/Styles/style.css" rel="stylesheet">
+    <link href="~/Styles/style-responsive.css" rel="stylesheet"/>
+</head>
+
+<body class="login-body">
+<div class="container">
+    <div class="form-signin">
+        <h2 class="form-signin-heading">Giriş Yap</h2>
+        <div class="login-wrap">
+            <form>
+                <input id="userName" name="userName" type="text" class="form-control" placeholder="Default: admin" autofocus required>
+                <input id="pwd" name="pwd" type="password" class="form-control" placeholder="Default: 1234" required>
+                <label class="checkbox">
+                    <input id="isRemember" name="isRemember" type="checkbox" value="true"> Beni Hatırla
+                    <span class="pull-right">
+                        <a data-toggle="modal" href="#myModal"> Şifremi Unuttum?</a>
+                    </span>
+                </label>
+            </form>
+            <p id="alertInfo" style="color:red; display:none;font-size:small;float:left">[*]Hatalı Giriş! Bilgilerinizi kontrol ediniz.</p>
+            <button id="btnLogin" class="btn btn-lg btn-login btn-block" type="button">Giriş</button>
+        </div>
+    </div>
+
+    <form action="/" method="post">
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Parolanızı mı Unuttunuz ?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Sisteme kayıtlı e-mail adresinizi giriniz.</p>
+                        <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                        <button class="btn btn-success" type="button">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+            $("#btnLogin").click(function () {
+                var userName = $("#userName").val();
+                var pwd = $("#pwd").val();
+                var isRemember = $("#isRemember").val();
+                PostLoginInfo(userName, pwd, isRemember);
+            });
+        </script>
+<script>
+            function PostLoginInfo(name, password, rememberVal) {
+                $.ajax({
+                    url: '/Login/ValidateLoginIfo',
+                    method: 'POST',
+                    data: { userName: encodeURIComponent(name), pwd: encodeURIComponent(password), isRemember: rememberVal },
+                    dataType: 'text'
+                }).done(function (d) {
+                    if (d == "false") {
+                        $("#alertInfo").show(400, function () {
+                            $(this).delay(3000);
+                            $(this).hide(400);
+                        });
+                    } else {
+                        window.location.replace("/Login/About");
+                    }
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Giriş bilgileri gönderilirken hata oluştu...");
+                })
+            }
+        </script>
+</body>
+</html>
+
+
+@*<div class="row">
+        <div class="bio-graph-heading">
+            <font style="vertical-align: inherit;">
+                 <font style="vertical-align: inherit; font-size:x-large"><i class="icon-smile"></i>Hoşgeldiniz... </font>
+                <br /><br />
+                <font style="vertical-align: inherit;">
+                    @DateTime.Now.ToString("dd MMMMMMM yyyy ddddddddd, HH:mm")
+                </font>
+            </font>
+        </div>
+
+    </div>*@

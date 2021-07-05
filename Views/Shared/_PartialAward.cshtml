@@ -1,0 +1,20 @@
+﻿@model List<PersonalWebPage_MVC.Models.Award>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td id="tdDesc-@item.ID" style="vertical-align:middle">
+            <div class="col-lg-9">@(new HtmlString(item.Description))</div>
+        </td>
+        <td style="vertical-align:middle; width:80px">
+            <a id="@item.ID" class="btn btn-success duzenle" data-toggle="modal" href="#modalEdit">
+                Düzenle
+            </a>
+        </td>
+        <td style="vertical-align:middle; width:60px">
+            <a id="@item.ID" class="btn btn-danger sil" data-toggle="modal" href="#modalRemove">
+                Sil
+            </a>
+        </td>
+    </tr>
+}

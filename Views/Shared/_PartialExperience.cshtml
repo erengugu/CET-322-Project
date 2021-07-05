@@ -1,0 +1,20 @@
+﻿@model List<PersonalWebPage_MVC.Models.Experience>
+@foreach (var item in Model)
+{
+    <tr>
+        <td id="tdPosi-@item.ID" style="vertical-align:middle">@(new HtmlString(item.Position))</td>
+        <td id="tdCorp-@item.ID" style="vertical-align:middle">@(new HtmlString(item.Corporation))</td>
+        <td id="tdDate-@item.ID" style="vertical-align:middle">@(new HtmlString(item.Date))</td>
+        <td id="tdDesc-@item.ID" style="vertical-align:middle">@(new HtmlString(item.Description))</td>
+        <td style="vertical-align:middle; width:80px">
+            <a id="@item.ID" class="btn btn-success duzenle" data-toggle="modal" href="#modalEdit">
+                Düzenle
+            </a>
+        </td>
+        <td style="vertical-align:middle; width:60px">
+            <a id="@item.ID" class="btn btn-danger sil" data-toggle="modal" href="#modalRemove">
+                Sil
+            </a>
+        </td>
+    </tr>
+}

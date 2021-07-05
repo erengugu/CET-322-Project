@@ -1,0 +1,386 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                İş Tecrübeleri
+            </header>
+            <div class="panel-body">
+                <section id="unseen">
+                    <a class="btn btn-primary" data-toggle="modal" style="margin-bottom:10px" href="#modalAdd">
+                        Yeni Ekle
+                    </a>
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Pozisyon</th>
+                            <th>Kurum</th>
+                            <th>Tarih</th>
+                            <th>Açıklama</th>
+                            <th>Düzenle</th>
+                            <th>Sil</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbodyExp"></tbody>
+                    </table>
+                </section>
+            </div>
+        </section>
+        <section class="panel">
+            <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İş Tecrübesi Ekle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Pozisyon</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="pozitionAdd" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Kurum</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="corparationAdd" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Tarih</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="dateAdd" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Açıklama</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <textarea name="contentAdd" id="editorAdd" class="form-control" cols="20" rows="15"></textarea>
+                                        <p style="color:red; display:none" class="alertAddEditor">* Bir içerik ekleyiniz...</p>
+                                    </div>
+                                </div>
+                            </form>
+                            <p style="color:red; display:none" class="alertAdd">* Tüm alanları doldurunuz...</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">İptal</button>
+                            <button class="btn btn-success btnAddSave" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İş Tecrübesi Düzenle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Pozisyon</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="pozitionEdit" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Kurum</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="corparationEdit" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Tarih</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="dateEdit" placeholder=" ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Açıklama</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <textarea name="contentEdit" id="editorEdit" class="form-control" cols="20" rows="15"></textarea>
+                                        <p style="color:red; display:none" class="alertEditEditor">* Bir içerik ekleyiniz...</p>
+                                    </div>
+                                </div>
+                            </form>
+                            <p style="color:red; display:none" class="alertEdit">* Tüm alanları doldurunuz...</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">İptal</button>
+                            <button id="" class="btn btn-success btnEditSave" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İş Tecrübesi Sil</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <h5>Bu içeriği silmek istiyor musunuz?</h5>
+                            </div>
+                            <div class="silinecekIcerik">
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default btnCancel" type="button">İptal</button>
+                            <button class="btn btn-danger btnRemove" type="button">Sil</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section ExtraScript{
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+    <!--Ekle modal editorunü yükle ve nesneyi değişkene at.Bu değişken set ve get işlemlerinde kullanılacak.-->
+    <script>
+        var myAddEditor;
+        ClassicEditor
+            .create(document.querySelector('#editorAdd'))
+            .then(editor => {
+                console.log('Add Editor yuklendi...', editor);
+                myAddEditor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <!--Düzenle modal editorunü yükle ve nesneyi değişkene at.Bu değişken set ve get işlemlerinde kullanılacak.-->
+    <script>
+        var myEditEditor;
+        ClassicEditor
+            .create(document.querySelector('#editorEdit'))
+            .then(editor => {
+                console.log('Update Editor yuklendi...', editor);
+                myEditEditor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <!--ajax ile experience tablosunu doldur.(Select)-->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Login/GetExperiences',
+                method: 'GET',
+                dataType: 'html'
+            }).done(function (d) {
+                $("#tbodyExp").html(d);
+                GetDataFromEditButton();
+                GetDataFromDeleteButton();
+            }).fail(function () {
+                console.log("Experience tablosu ajax ile çekilirken hata oluştu...");
+            })
+        });
+    </script>
+    <!--add modalında kaydet butonuna basılırsa (Insert)-->
+    <script>
+        $(".btnAddSave").click(function () {
+            var posi = $("#pozitionAdd").val();
+            var corp = $("#corparationAdd").val();
+            var date = $("#dateAdd").val();
+            var desc = myAddEditor.getData();
+            var descText = $(desc).text();
+            var data = { Position: encodeURIComponent(posi), Corporation: encodeURIComponent(corp), Date: encodeURIComponent(date), Description: encodeURIComponent(desc) };
+            if (posi.trim() != '' && corp.trim() != '' && date.trim() != '' && descText.trim() != '') {
+                InsertItem(data);
+                $('#modalAdd').modal('toggle');
+                $("#pozitionAdd").val('');
+                $("#corparationAdd").val('');
+                $("#dateAdd").val('');
+                myAddEditor.setData('');
+            } else {
+                $(".alertAdd").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--tabloda düzenle tuşuna basılırsa id ve açıklamaları al ve modallara gönder.(Update)-->
+    <script>
+        function GetDataFromEditButton() {
+            var editedItemID;
+            var editedItemPosi;
+            var editedItemCorp;
+            var editedItemDate;
+            var editedItemDesc;
+            $(".duzenle").click(function () {
+                editedItemID = $(this).attr("id");//al
+                $(".btnEditSave").attr("id", editedItemID);//kaydet tuşuna gönder.
+                //
+                editedItemPosi = $("#tdPosi-" + editedItemID).html();
+                editedItemCorp = $("#tdCorp-" + editedItemID).html();
+                editedItemDate = $("#tdDate-" + editedItemID).html();
+                editedItemDesc = $("#tdDesc-" + editedItemID).html();
+                //
+                $("#pozitionEdit").val(editedItemPosi);
+                $("#corparationEdit").val(editedItemCorp);
+                $("#dateEdit").val(editedItemDate);
+                myEditEditor.setData(editedItemDesc);// açıklamayı modaldaki ck editöre gönder.
+            });
+        }
+    </script>
+    <!--tabloda sil tuşuna basılırsa id ve açıklamaları al ve modallara gönder. (Delete)-->
+    <script>
+        function GetDataFromDeleteButton() {
+            var deletedItemID;
+            var deletedItemDesc;
+            $(".sil").click(function () {
+                deletedItemID = $(this).attr("id");//al
+                $(".btnRemove").attr("id", deletedItemID);//modaldaki sil tuşuna gönder.
+                deletedItemDesc = $("#tdPosi-" + deletedItemID).text() + ', ' + $("#tdCorp-" + deletedItemID).text() + ', ' + $("#tdDate-" + deletedItemID).text();
+                $(".silinecekIcerik").append(deletedItemDesc);
+                //if (deletedItemDesc.length >= 50) {
+                //    $(".silinecekIcerik").append(deletedItemDesc.substring(0, 50) + "...");
+                //} else {
+                //    $(".silinecekIcerik").append(deletedItemDesc);// silinecek öğenin açıklamasını modal'a ekle.
+                //}
+            })
+        }
+    </script>
+    <!--remove modalda sil tuşuna basılırsa (Delete)-->
+    <script>
+        $(".btnRemove").click(function () {
+            var experienceId = $(this).attr("id");
+            RemoveItem(experienceId);
+            $('#modalRemove').modal('toggle');
+            $(".silinecekIcerik").empty();
+        })
+    </script>
+    <!--remove modalda iptal tuşuna basılırsa-->
+    <script>
+        $(".btnCancel").click(function () {
+            $(".silinecekIcerik").empty();
+        });
+    </script>
+    <!--edit modalda kaydet tuşuna basılırsa (Update)-->
+    <script>
+        $(".btnEditSave").click(function () {
+            var editedItemID = $(this).attr("id");
+            var posi = $("#pozitionEdit").val();
+            var corp = $("#corparationEdit").val();
+            var date = $("#dateEdit").val();
+            var desc = myEditEditor.getData();
+            var descText = $(desc).text();
+            var data = { ID: editedItemID, Position: encodeURIComponent(posi), Corporation: encodeURIComponent(corp), Date: encodeURIComponent(date), Description: encodeURIComponent(desc) };
+            if (posi.trim() != '' && corp.trim() != '' && date.trim() != '' && descText.trim() != '') {
+                UpdateItem(data);
+                $('#modalEdit').modal('toggle');
+                $("#pozitionEdit").val('');
+                $("#corparationEdit").val('');
+                $("#dateEdit").val('');
+                myEditEditor.setData('');
+            } else {
+                $(".alertEdit").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--award ekle fonksiyonu (Insert)-->
+    <script>
+        function InsertItem(insertData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/InsertExperience',
+                    method: 'POST',
+                    data: { data: insertData },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyExp").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    console.log("Experience tablosuna yeni bir öğe eklenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--experience güncelle fonksiyonu (Update)-->
+    <script>
+        function UpdateItem(updatedData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/UpdateExperience',
+                    method: 'POST',
+                    data: { data: updatedData },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyExp").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Experience tablosu ajax ile güncellenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--experience sil fonksiyonu (Delete)-->
+    <script>
+        function RemoveItem(removedId) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/RemoveExperience',
+                    method: 'POST',
+                    data: { id: removedId },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyExp").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Experience tablosu ajax ile silinirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+}
+
+@**@

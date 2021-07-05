@@ -1,0 +1,21 @@
+﻿@model List<PersonalWebPage_MVC.Models.Education>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td id="tdUni-@item.ID">@(new HtmlString(item.University))</td>
+        <td id="tdFac-@item.ID">@(new HtmlString(item.Faculty))</td>
+        <td id="tdDep-@item.ID">@(new HtmlString(item.Department))</td>
+        <td id="tdDate-@item.ID">@(new HtmlString(item.Date))</td>
+        <td style="vertical-align:middle; width:80px">
+            <a id="@item.ID" class="btn btn-success duzenle" data-toggle="modal" href="#modalEdit">
+                Düzenle
+            </a>
+        </td>
+        <td style="vertical-align:middle; width:60px">
+            <a id="@item.ID" class="btn btn-danger sil" data-toggle="modal" href="#modalRemove">
+                Sil
+            </a>
+        </td>
+    </tr>
+}

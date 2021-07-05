@@ -1,0 +1,480 @@
+﻿@section ExtraStyle{
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <!---tech-->
+        <div class="col-lg-6">
+            <section class="panel">
+                <header class="panel-heading">
+                    Kullanılan Teknolojiler
+                </header>
+                <div class="panel-body">
+                    <section id="unseen">
+                        <a class="btn btn-primary" data-toggle="modal" style="margin-bottom:10px" href="#modalAddTech">
+                            Yeni Ekle
+                        </a>
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Font-Awasome Kodu</th>
+                                <th>İcon</th>
+                                <th>Sil</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbodySkillsTech"></tbody>
+                        </table>
+                    </section>
+                </div>
+            </section>
+        </div>
+        <!--work-->
+        <div class="col-lg-6">
+            <section class="panel">
+                <header class="panel-heading">
+                    İş Yetenekleri
+                </header>
+                <div class="panel-body">
+                    <section id="unseen">
+                        <a class="btn btn-primary" data-toggle="modal" style="margin-bottom:10px" href="#modalAddWork">
+                            Yeni Ekle
+                        </a>
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Açıklama</th>
+                                <th>Düzenle</th>
+                                <th>Sil</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbodySkillWork"></tbody>
+                        </table>
+                    </section>
+                </div>
+            </section>
+        </div>
+
+        <!---tech-->
+        <section class="panel">
+            <div class="modal fade" id="modalAddTech" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Teknoloji Ekle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">Font-Awasome Kodu</font>
+                                    </font>
+                                </label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control dataTech" id="name" placeholder="">
+                                    <p style="color:red; display:none" class="alertAddTech">* Bir içerik ekleyiniz...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">İptal</button>
+                            <button class="btn btn-success btnAddSaveTech" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalRemoveTech" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Teknoloji Sil</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <h5>Bu içeriği silmek istiyor musunuz?</h5>
+                            </div>
+                            <div class="silinecekIcerikTech">
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default btnCancelTech" type="button">İptal</button>
+                            <button class="btn btn-danger btnRemoveTech" type="button">Sil</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--work-->
+        <section class="panel">
+            <div class="modal fade" id="modalAddWork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İş Yeteneği Ekle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Açıklama</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <textarea name="contentAdd" id="editorAdd" class="form-control" cols="20" rows="15"></textarea>
+                                        <p style="color:red; display:none" class="alertAddEditor">* Bir içerik ekleyiniz...</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">İptal</button>
+                            <button class="btn btn-success btnAddSaveWork" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalEditWork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İş Yeteneği Düzenle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Açıklama</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <textarea name="contentEdit" id="editorEdit" class="form-control" cols="20" rows="15"></textarea>
+                                        <p style="color:red; display:none" class="alertEditEditor">* Bir içerik ekleyiniz...</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">İptal</button>
+                            <button id="" class="btn btn-success btnEditSaveWork" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalRemoveWork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İş Yeteneği Sil</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <h5>Bu içeriği silmek istiyor musunuz?</h5>
+                            </div>
+                            <div class="silinecekIcerikWork">
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default btnCancelWork" type="button">İptal</button>
+                            <button class="btn btn-danger btnRemoveWork" type="button">Sil</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section ExtraScript{
+    <!--WORK-->
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+    <!--Ekle modal editorunü yükle ve nesneyi değişkene at.Bu değişken set ve get işlemlerinde kullanılacak.-->
+    <script>
+        var myAddEditor;
+        ClassicEditor
+            .create(document.querySelector('#editorAdd'))
+            .then(editor => {
+                console.log('Add Editor yuklendi...', editor);
+                myAddEditor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <!--Düzenle modal editorunü yükle ve nesneyi değişkene at.Bu değişken set ve get işlemlerinde kullanılacak.-->
+    <script>
+        var myEditEditor;
+        ClassicEditor
+            .create(document.querySelector('#editorEdit'))
+            .then(editor => {
+                console.log('Update Editor yuklendi...', editor);
+                myEditEditor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <!--ajax ile work tablosunu doldur.(Select)-->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Login/GetWorkSkills',
+                method: 'GET',
+                dataType: 'html'
+            }).done(function (d) {
+                $("#tbodySkillWork").html(d);
+                GetDataFromEditButtonWork();
+                GetDataFromDeleteButtonWork();
+            }).fail(function () {
+                console.log("Work tablosu ajax ile çekilirken hata oluştu...");
+            })
+        });
+    </script>
+    <!--add modalında kaydet butonuna basılırsa (Insert)-->
+    <script>
+        $(".btnAddSaveWork").click(function () {
+            var data = myAddEditor.getData();
+            if ($(data).text().trim() != '') {
+                InsertItemWork(data);
+                $('#modalAddWork').modal('toggle');
+                myAddEditor.setData('');
+            } else {
+                $(".alertAddEditor").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--tabloda düzenle tuşuna basılırsa id ve açıklamaları al ve modallara gönder.(Update)-->
+    <script>
+        function GetDataFromEditButtonWork() {
+            var editedItemID;
+            var editedItemDesc;
+            $(".duzenleWork").click(function () {
+                editedItemID = $(this).attr("id");//al
+                $(".btnEditSaveWork").attr("id", editedItemID);//kaydet tuşuna gönder.
+                editedItemDesc = $("#tdDesc-" + editedItemID).html();
+                myEditEditor.setData(editedItemDesc);// açıklamayı modaldaki ck editöre gönder.
+            })
+        }
+    </script>
+    <!--tabloda sil tuşuna basılırsa id ve açıklamaları al ve modallara gönder. (Delete)-->
+    <script>
+        function GetDataFromDeleteButtonWork() {
+            var deletedItemID;
+            var deletedItemDesc;
+            $(".silWork").click(function () {
+                deletedItemID = $(this).attr("id");//al
+                $(".btnRemoveWork").attr("id", deletedItemID);//modaldaki sil tuşuna gönder.
+                deletedItemDesc = $("#tdDesc-" + deletedItemID).text();
+                if (deletedItemDesc.length >= 50) {
+                    $(".silinecekIcerikWork").append(deletedItemDesc.substring(0, 50) + "...");
+                } else {
+                    $(".silinecekIcerikWork").append(deletedItemDesc);// silinecek öğenin açıklamasını modal'a ekle.
+                }
+            })
+        }
+    </script>
+    <!--remove modalda sil tuşuna basılırsa (Delete)-->
+    <script>
+        $(".btnRemoveWork").click(function () {
+            var awardId = $(this).attr("id");
+            RemoveItemWork(awardId);
+            $('#modalRemoveWork').modal('toggle');
+            $(".silinecekIcerikWork").empty();
+        })
+    </script>
+    <!--remove modalda iptal tuşuna basılırsa-->
+    <script>
+        $(".btnCancelWork").click(function () {
+            $(".silinecekIcerikWork").empty();
+        });
+    </script>
+    <!--edit modalda kaydet tuşuna basılırsa (Update)-->
+    <script>
+        $(".btnEditSaveWork").click(function () {
+            var awardId = $(this).attr("id");
+            var newData = myEditEditor.getData();
+            if ($(newData).text().trim() != '') {
+                UpdateItemWork(awardId, newData);
+                $('#modalEditWork').modal('toggle');
+            } else {
+                $(".alertEditEditor").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--work ekle fonksiyonu (Insert)-->
+    <script>
+        function InsertItemWork(insertData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/InsertWorkSkill',
+                    method: 'POST',
+                    data: { desc: encodeURIComponent(insertData) },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodySkillWork").html(d);
+                    GetDataFromEditButtonWork();
+                    GetDataFromDeleteButtonWork();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Work tablosuna yeni bir öğe eklenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--work güncelle fonksiyonu (Update)-->
+    <script>
+        function UpdateItemWork(updatedId, updatedData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/UpdateWorkSkill',
+                    method: 'POST',
+                    data: { id: updatedId, desc: encodeURIComponent(updatedData) },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodySkillWork").html(d);
+                    GetDataFromEditButtonWork();
+                    GetDataFromDeleteButtonWork();
+                }).fail(function (h) {
+                    console.log("Work tablosu ajax ile güncellenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--work sil fonksiyonu (Delete)-->
+    <script>
+        function RemoveItemWork(removedId) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/RemoveWorkSkill',
+                    method: 'POST',
+                    data: { id: removedId },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodySkillWork").html(d);
+                    GetDataFromEditButtonWork();
+                    GetDataFromDeleteButtonWork();
+                }).fail(function (h) {
+                    console.log("Work tablosu ajax ile silinirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+
+    <!--TECH-->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Login/GetTechSkills',
+                method: 'GET',
+                dataType: 'html'
+            }).done(function (d) {
+                $("#tbodySkillsTech").html(d);
+                GetDataFromDeleteButtonTech();
+            }).fail(function () {
+                console.log("Tech tablosu ajax ile çekilirken hata oluştu...");
+            })
+        });
+    </script>
+    <!--addTech modalında kaydet butonuna basılırsa (Insert)-->
+    <script>
+        $(".btnAddSaveTech").click(function () {
+            var data = $(".dataTech").val();
+            //alert(data.trim());
+            if (data.trim() != '') {
+                InsertSkillTech(data);
+                $('#modalAddTech').modal('toggle');
+                $(".dataTech").val('');
+            } else {
+                $(".alertAddTech").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--tech ekle fonksiyonu (Insert)-->
+    <script>
+        function InsertSkillTech(insertData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/InsertTechSkill',
+                    method: 'POST',
+                    data: { desc: encodeURIComponent(insertData) },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodySkillsTech").html(d);
+                    GetDataFromDeleteButtonTech();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Tech tablosuna yeni bir öğe eklenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--tabloda sil tuşuna basılırsa id ve açıklamaları al ve modallara gönder. (Delete)-->
+    <script>
+        function GetDataFromDeleteButtonTech() {
+            var deletedItemID;
+            var deletedItemDesc;
+            $(".silTech").click(function () {
+                deletedItemID = $(this).attr("id");//al
+                $(".btnRemoveTech").attr("id", deletedItemID);//modaldaki sil tuşuna gönder.
+                deletedItemDesc = $("#tdDescTech-" + deletedItemID).text();
+                if (deletedItemDesc.length >= 50) {
+                    $(".silinecekIcerikTech").append(deletedItemDesc.substring(0, 50) + "...");
+                } else {
+                    $(".silinecekIcerikTech").append(deletedItemDesc);// silinecek öğenin açıklamasını modal'a ekle.
+                }
+            })
+        }
+    </script>
+    <!--removeTech modalda sil tuşuna basılırsa (Delete)-->
+    <script>
+        $(".btnRemoveTech").click(function () {
+            var techId = $(this).attr("id");
+            RemoveItemTech(techId);
+            $('#modalRemoveTech').modal('toggle');
+            $(".silinecekIcerikTech").empty();
+        })
+    </script>
+    <!--removeTech modalda iptal tuşuna basılırsa-->
+    <script>
+        $(".btnCancelTech").click(function () {
+            $(".silinecekIcerikTech").empty();
+        });
+    </script>
+    <!--tech sil fonksiyonu (Delete)-->
+    <script>
+        function RemoveItemTech(removedId) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/RemoveTechSkill',
+                    method: 'POST',
+                    data: { id: removedId },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodySkillsTech").html(d);
+                    GetDataFromDeleteButtonTech();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Tech tablosundan öğe, ajax ile silinirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+}

@@ -1,0 +1,143 @@
+﻿<section>
+    <div class="col-lg-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;"> Yeni Parola</font>
+                </font>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Kullanıcı Adı</font>
+                            </font>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="userName" placeholder=" ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Şimdiki Şifreniz</font>
+                            </font>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="password" class="form-control" id="currentPwd" placeholder=" ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Yeni Şifreniz</font>
+                            </font>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="password" class="form-control" id="newPwd" placeholder=" ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Yeni Şifrenizi Tekrar Yazınız</font>
+                            </font>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="password" class="form-control" id="repeatPwd" placeholder=" ">
+                        </div>
+                    </div>
+                    <div>
+                        <p style="color:red; display:none;font-size:medium" class="alertEmty">* Tüm alanları doldurunuz...</p>
+                        <p style="color:red; display:none;font-size:medium" class="alertNotSame">* Yeni belirlediğiniz şifreler aynı olmalıdır...</p>
+                        <p style="color:green; display:none;font-size:medium" class="alertSuccess">* İşleminiz başarılı bir şekilde gerçekleştirilmiştir....</p>
+                        <p style="color:red; display:none;font-size:medium" class="alertError">* Başarısız işlem...</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <button id="btnUpdate" type="button" class="btn btn-info">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Güncelle</font>
+                                </font>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section ExtraScript{
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Login/GetLoginInfo',
+                method: 'GET',
+                dataType: 'json'
+            }).done(function (d) {
+                $("#userName").val(d.UserName);
+                $("#btnUpdate").attr('id', d.ID);
+            }).fail(function () {
+                console.log("hata oluştu...");
+            })
+        });
+    </script>
+    <script>
+
+        $("#btnUpdate").click(function () {
+            var loginId = $(this).attr("id");
+            var userName = $("#userName").val();
+            var currentPwd = $("#currentPwd").val();
+            var newPwd = $("#newPwd").val();
+            var repeatPwd = $("#repeatPwd").val();
+            if (userName.trim() != '' && currentPwd.trim() != '' && repeatPwd.trim() != '' && newPwd.trim() != '') {
+                if (repeatPwd.trim() == newPwd.trim()) {
+                    UpdateItem(loginId, encodeURIComponent(userName), encodeURIComponent(newPwd), encodeURIComponent(currentPwd));
+                } else {
+                    $(".alertNotSame").show(400, function () {
+                        $(this).delay(3000);
+                        $(this).hide(400);
+                    });
+                }
+            }
+            else {
+                $(".alertEmty").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <script>
+        function UpdateItem(id, userName, newPwd, currentPwd) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/UpdateLoginInfo',
+                    method: 'POST',
+                    data: { id: id, name: userName, newPwd: newPwd, currentPwd: currentPwd },
+                    dataType: 'json'
+                }).done(function (d) {
+                    if (d.Status == false) {
+                        $("#btnUpdate").attr('id', d.ID);
+                        $(".alertError").show(400, function () {
+                            $(this).delay(3000);
+                            $(this).hide(400);
+                        });
+                    } else {
+                        $("#userName").val(d.UserName);
+                        $("#btnUpdate").attr('id', d.ID);
+                        $(".alertSuccess").show(400, function () {
+                            $(this).delay(3000);
+                            $(this).hide(400);
+                        });
+                    }
+                }).fail(function (h) {
+                    alert("güncellemede hata var");
+                    console.log("hata oluştu...");
+                })
+            });
+        }
+    </script>
+}

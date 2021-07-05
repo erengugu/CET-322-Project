@@ -1,0 +1,291 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                İlgi Alanları
+            </header>
+            <div class="panel-body">
+                <section id="unseen">
+                    <a class="btn btn-primary" data-toggle="modal" style="margin-bottom:10px" href="#modalAdd">
+                        Yeni Ekle
+                    </a>
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Açıklama</th>
+                            <th>Düzenle</th>
+                            <th>Sil</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbodyInterest"></tbody>
+                    </table>
+                </section>
+            </div>
+        </section>
+        <section class="panel">
+            <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İlgi Alanı Ekle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Açıklama</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <textarea name="contentAdd" id="editorAdd" class="form-control" cols="20" rows="15"></textarea>
+                                        <p style="color:red; display:none" class="alertAddEditor">* Bir içerik ekleyiniz...</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">İptal</button>
+                            <button class="btn btn-success btnAddSave" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İlgi Alanı Düzenle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Açıklama</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <textarea name="contentEdit" id="editorEdit" class="form-control" cols="20" rows="15"></textarea>
+                                        <p style="color:red; display:none" class="alertEditEditor">* Bir içerik ekleyiniz...</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">İptal</button>
+                            <button id="" class="btn btn-success btnEditSave" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">İlgi Alanı Sil</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <h5>Bu içeriği silmek istiyor musunuz?</h5>
+                            </div>
+                            <div class="silinecekIcerik">
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default btnCancel" type="button">İptal</button>
+                            <button class="btn btn-danger btnRemove" type="button">Sil</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section ExtraScript{
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+    <!--Ekle modal editorunü yükle ve nesneyi değişkene at.Bu değişken set ve get işlemlerinde kullanılacak.-->
+    <script>
+        var myAddEditor;
+        ClassicEditor
+            .create(document.querySelector('#editorAdd'))
+            .then(editor => {
+                console.log('Add Editor yuklendi...', editor);
+                myAddEditor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <!--Düzenle modal editorunü yükle ve nesneyi değişkene at.Bu değişken set ve get işlemlerinde kullanılacak.-->
+    <script>
+        var myEditEditor;
+        ClassicEditor
+            .create(document.querySelector('#editorEdit'))
+            .then(editor => {
+                console.log('Update Editor yuklendi...', editor);
+                myEditEditor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <!--ajax ile interest tablosunu doldur.(Select)-->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Login/GetInterests',
+                method: 'GET',
+                dataType: 'html'
+            }).done(function (d) {
+                $("#tbodyInterest").html(d);
+                GetDataFromEditButton();
+                GetDataFromDeleteButton();
+            }).fail(function () {
+                console.log("Interests tablosu ajax ile çekilirken hata oluştu...");
+            })
+        });
+    </script>
+    <!--add modalında kaydet butonuna basılırsa (Insert)-->
+    <script>
+        $(".btnAddSave").click(function () {
+            var data = myAddEditor.getData();
+            if ($(data).text().trim() != '') {
+                InsertItem(data);
+                $('#modalAdd').modal('toggle');
+                myAddEditor.setData('');
+            } else {
+                $(".alertAddEditor").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--tabloda düzenle tuşuna basılırsa id ve açıklamaları al ve modallara gönder.(Update)-->
+    <script>
+        function GetDataFromEditButton() {
+            var editedItemID;
+            var editedItemDesc;
+            $(".duzenle").click(function () {
+                editedItemID = $(this).attr("id");//al
+                $(".btnEditSave").attr("id", editedItemID);//kaydet tuşuna gönder.
+                editedItemDesc = $("#tdDesc-" + editedItemID).html();
+                myEditEditor.setData(editedItemDesc);// açıklamayı modaldaki ck editöre gönder.
+            })
+        }
+    </script>
+    <!--tabloda sil tuşuna basılırsa id ve açıklamaları al ve modallara gönder. (Delete)-->
+    <script>
+        function GetDataFromDeleteButton() {
+            var deletedItemID;
+            var deletedItemDesc;
+            $(".sil").click(function () {
+                deletedItemID = $(this).attr("id");//al
+                $(".btnRemove").attr("id", deletedItemID);//modaldaki sil tuşuna gönder.
+                deletedItemDesc = $("#tdDesc-" + deletedItemID).text();
+                if (deletedItemDesc.length >= 50) {
+                    $(".silinecekIcerik").append(deletedItemDesc.substring(0, 50) + "...");
+                } else {
+                    $(".silinecekIcerik").append(deletedItemDesc);// silinecek öğenin açıklamasını modal'a ekle.
+                }
+            })
+        }
+    </script>
+    <!--remove modalda sil tuşuna basılırsa (Delete)-->
+    <script>
+        $(".btnRemove").click(function () {
+            var interestId = $(this).attr("id");
+            RemoveItem(interestId);
+            $('#modalRemove').modal('toggle');
+            $(".silinecekIcerik").empty();
+        })
+    </script>
+    <!--remove modalda iptal tuşuna basılırsa-->
+    <script>
+        $(".btnCancel").click(function () {
+            $(".silinecekIcerik").empty();
+        });
+    </script>
+    <!--edit modalda kaydet tuşuna basılırsa (Update)-->
+    <script>
+        $(".btnEditSave").click(function () {
+            var interestId = $(this).attr("id");
+            var newData = myEditEditor.getData();
+            if ($(newData).text().trim() != '') {
+                UpdateItem(interestId, newData);
+                $('#modalEdit').modal('toggle');
+            } else {
+                $(".alertEditEditor").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--Interest ekle fonksiyonu (Insert)-->
+    <script>
+        function InsertItem(insertData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/InsertInterest',
+                    method: 'POST',
+                    data: { desc: encodeURIComponent(insertData) },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyInterest").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Interest tablosuna yeni bir öğe eklenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--Interest güncelle fonksiyonu (Update)-->
+    <script>
+        function UpdateItem(updatedId, updatedData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/UpdateInterest',
+                    method: 'POST',
+                    data: { id: updatedId, desc: encodeURIComponent(updatedData) },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyInterest").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Interest tablosu ajax ile güncellenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--Interest sil fonksiyonu (Delete)-->
+    <script>
+        function RemoveItem(removedId) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/RemoveInterest',
+                    method: 'POST',
+                    data: { id: removedId },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyInterest").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Interest tablosu ajax ile silinirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+}

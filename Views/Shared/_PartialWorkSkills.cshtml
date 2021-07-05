@@ -1,0 +1,20 @@
+﻿@model List<PersonalWebPage_MVC.Models.Skill>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td id="tdDesc-@item.ID" style="vertical-align:middle">
+            <div class="col-lg-9">@(new HtmlString(item.Description))</div>
+        </td>
+        <td style="vertical-align:middle; width:80px">
+            <a id="@item.ID" class="btn btn-success duzenleWork" data-toggle="modal" href="#modalEditWork">
+                Düzenle
+            </a>
+        </td>
+        <td style="vertical-align:middle; width:60px">
+            <a id="@item.ID" class="btn btn-danger silWork" data-toggle="modal" href="#modalRemoveWork">
+                Sil
+            </a>
+        </td>
+    </tr>
+}

@@ -1,0 +1,356 @@
+﻿@{
+    ViewBag.Title = "Education";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Eğitim
+            </header>
+            <div class="panel-body">
+                <section id="unseen">
+
+                    <a class="btn btn-primary" data-toggle="modal" style="margin-bottom:10px" href="#modalAdd">
+                        Yeni Ekle
+                    </a>
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Üniversite</th>
+                            <th>Fakülte</th>
+                            <th>Bölüm</th>
+                            <th>Tarih</th>
+                            <th>Düzenle</th>
+                            <th>Sil</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbodyEducation"></tbody>
+                    </table>
+                </section>
+            </div>
+        </section>
+        <section class="panel">
+            <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Eğitim Ekle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Üniversite</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="uniAdd" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Fakülte</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="facAdd" placeholder=" " required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Bölüm</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="depAdd" placeholder=" " required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Tarih</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="dateAdd" placeholder="" required>
+                                    </div>
+                                </div>
+                            </form>
+                            <p style="color:red; display:none" class="alertAdd">* Tüm alanları doldurunuz...</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default btnCancelAdd" type="button">İptal</button>
+                            <button class="btn btn-success btnSaveAdd" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Eğitim Düzenle</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Üniversite</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="uniEdit" placeholder=" " required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Fakülte</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="facEdit" placeholder=" " required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Bölüm</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="depEdit" placeholder=" " required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Tarih</font>
+                                        </font>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="dateEdit" placeholder=" " required>
+                                    </div>
+                                </div>
+                            </form>
+                            <p style="color:red; display:none" class="alertEdit">* Tüm alanları doldurunuz...</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default btnCancelEdit" type="button">İptal</button>
+                            <button class="btn btn-success btnSaveEdit" type="button">Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Eğitim Sil</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <h5>Bu içeriği silmek istiyor musunuz?</h5>
+                            </div>
+                            <div class="silinecekIcerik">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default btnRemoveCancel" type="button">İptal</button>
+                            <button class="btn btn-danger btnRemove" type="button">Sil</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section ExtraScript{
+    <!--ajax ile award tablosunu doldur.(Select)-->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Login/GetEducations',
+                method: 'GET',
+                dataType: 'html'
+            }).done(function (d) {
+                $("#tbodyEducation").html(d);
+                GetDataFromEditButton();
+                GetDataFromDeleteButton();
+            }).fail(function () {
+                console.log("Education tablosu ajax ile çekilirken hata oluştu...");
+            })
+        });
+    </script>
+    <!--add modalında kaydet butonuna basılırsa (Insert)-->
+    <script>
+        $(".btnSaveAdd").click(function () {
+            var uni = $("#uniAdd").val();
+            var fac = $("#facAdd").val();
+            var dep = $("#depAdd").val();
+            var date = $("#dateAdd").val();
+            var data = { University: encodeURIComponent(uni), Faculty: encodeURIComponent(fac), Department: encodeURIComponent(dep), Date: encodeURIComponent(date) };
+            if (uni.trim() != '' && fac.trim() != '' && dep.trim() != '' && date.trim() != '') {
+                InsertItem(data);
+                $('#modalAdd').modal('toggle');
+                $("#uniAdd").val('');
+                $("#facAdd").val('');
+                $("#depAdd").val('');
+                $("#dateAdd").val('');
+            } else {
+                $(".alertAdd").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--tabloda düzenle tuşuna basılırsa id ve açıklamaları al ve modallara gönder.(Update)-->
+    <script>
+        function GetDataFromEditButton() {
+            var editedItemID;
+            var editedItemUni;
+            var editedItemFac;
+            var editedItemDep;
+            var editedItemDate;
+            $(".duzenle").click(function () {
+                editedItemID = $(this).attr("id");//al
+                $(".btnSaveEdit").attr("id", editedItemID);//kaydet tuşuna gönder.
+                //
+                editedItemUni = $("#tdUni-" + editedItemID).html();
+                editedItemFac = $("#tdFac-" + editedItemID).html();
+                editedItemDep = $("#tdDep-" + editedItemID).html();
+                editedItemDate = $("#tdDate-" + editedItemID).html();
+                //
+                $("#uniEdit").val(editedItemUni);
+                $("#facEdit").val(editedItemFac);
+                $("#depEdit").val(editedItemDep);
+                $("#dateEdit").val(editedItemDate);
+            })
+        }
+    </script>
+    <!--tabloda sil tuşuna basılırsa id ve açıklamaları al ve modallara gönder. (Delete)-->
+    <script>
+        function GetDataFromDeleteButton() {
+            var deletedItemID;
+            var deletedItemDesc;
+            $(".sil").click(function () {
+                deletedItemID = $(this).attr("id");//al
+                $(".btnRemove").attr("id", deletedItemID);//modaldaki sil tuşuna gönder.
+                deletedItemDesc = $("#tdUni-" + deletedItemID).text() + ', ' + $("#tdFac-" + deletedItemID).text() + ', ' + $("#tdDep-" + deletedItemID).text() + ', ' + $("#tdDate-" + deletedItemID).text();
+                //if (deletedItemDesc.length >= 50) {
+                //    $(".silinecekIcerik").append(deletedItemDesc.substring(0, 50) + "...");
+                //} else {
+                $(".silinecekIcerik").append(deletedItemDesc);// silinecek öğenin açıklamasını modal'a ekle.
+                //}
+            })
+        }
+    </script>
+    <!--remove modalda sil tuşuna basılırsa (Delete)-->
+    <script>
+        $(".btnRemove").click(function () {
+            var eduId = $(this).attr("id");
+            RemoveItem(eduId);
+            $('#modalRemove').modal('toggle');
+            $(".silinecekIcerik").empty();
+        })
+    </script>
+    <!--remove modalda iptal tuşuna basılırsa-->
+    <script>
+        $(".btnRemoveCancel").click(function () {
+            $(".silinecekIcerik").empty();
+        });
+    </script>
+    <!--edit modalda kaydet tuşuna basılırsa (Update)-->
+    <script>
+        $(".btnSaveEdit").click(function () {
+            var id = $(this).attr("id");
+            var uni = $("#uniEdit").val();
+            var fac = $("#facEdit").val();
+            var dep = $("#depEdit").val();
+            var date = $("#dateEdit").val();
+            var data = { ID: id, University: encodeURIComponent(uni), Faculty: encodeURIComponent(fac), Department: encodeURIComponent(dep), Date: encodeURIComponent(date) };
+            if (uni.trim() != '' && fac.trim() != '' && dep.trim() != '' && date.trim() != '') {
+                UpdateItem(data);
+                $('#modalEdit').modal('toggle');
+                $("#uniEdit").val('');
+                $("#facEdit").val('');
+                $("#depEdit").val('');
+                $("#dateEdit").val('');
+            } else {
+                $(".alertEdit").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            }
+        })
+    </script>
+    <!--edu ekle fonksiyonu (Insert)-->
+    <script>
+        function InsertItem(insertData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/InsertEducation',
+                    method: 'POST',
+                    data: { e: insertData },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyEducation").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Education tablosuna yeni bir öğe eklenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--award güncelle fonksiyonu (Update)-->
+    <script>
+        function UpdateItem(updatedData) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/UpdateEducation',
+                    method: 'POST',
+                    data: { e: updatedData },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyEducation").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Award tablosu ajax ile güncellenirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+    <!--award sil fonksiyonu (Delete)-->
+    <script>
+        function RemoveItem(removedId) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Login/RemoveEducation',
+                    method: 'POST',
+                    data: { id: removedId },
+                    dataType: 'html'
+                }).done(function (d) {
+                    $("#tbodyEducation").html(d);
+                    GetDataFromEditButton();
+                    GetDataFromDeleteButton();
+                }).fail(function (h) {
+                    alert("hata var");
+                    console.log("Award tablosu ajax ile silinirken hata oluştu...");
+                })
+            });
+        }
+    </script>
+}

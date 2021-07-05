@@ -1,0 +1,293 @@
+﻿@model PersonalWebPage_MVC.Models.Person
+<div class="row">
+    <aside class="profile-nav col-lg-3">
+        <section class="panel">
+            <div class="user-heading round">
+                <a href="#">
+                    <img id="profilePhoto" src="@Model.Photo" alt="">
+                </a>
+                <h1>
+                    <font id="nameSurname" style="vertical-align: inherit;">@Model.Name @Model.Surname</font>
+                </h1>
+            </div>
+        </section>
+    </aside>
+    <aside class="profile-info col-lg-9">
+        <section>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;"> Hakkında Sayfası</font>
+                    </font>
+                </div>
+                <div class="panel-body">
+                    <form id="upload" class="form-horizontal uploadForm" method="POST" enctype="multipart/form-data" action="@Url.Action("UploadPhoto", "Login")">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">Resim</font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="file" class="file-pos fileChose" id="fileUpload" name="photo" accept="image/*" required>
+                                <button id="@Model.ID" class="btn btn-info photoUpload" style="margin-top:5px">Güncelle</button>
+                                <br/>
+                                <p style="color:green; display:none" class="alertSucces">*Resim başarılı bir şekilde güncellendi...</p>
+                                <p style="color:red; display:none" class="alertDanger">*Güncelleme sırasında bir hata oluştu!</p>
+                                <p style="color:blue; display:none" class="alertSize">*Lütfen 2MB ve altında bir resim yükleyiniz...</p>
+                            </div>
+                        </div>
+                    </form>
+                    <hr/>
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Adı</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="name" placeholder=" " value="@Model.Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Soyadı</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="surname" placeholder=" " value="@Model.Surname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Adres</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="address" placeholder=" " value="@Model.Address" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">E-Mail</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="email" class="form-control" id="mail" placeholder=" " value="@Model.Mail" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Açıklama</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-10">
+                                <textarea name="" id="desc" class="form-control" cols="30" rows="10" required>@Model.Description</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Linkedin</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="linkedin" placeholder=" " value="@Model.Linkedin">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Github</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="github" placeholder=" " value="@Model.Github">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Twitter</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="twitter" placeholder=" " value="@Model.Twitter">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Facebook</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="facebook" placeholder=" " value="@Model.Facebook">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Youtube</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="youtube" placeholder=" " value="@Model.Youtube">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Instagram</font>
+                                </font>
+                            </label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="instagram" placeholder=" " value="@Model.Instagram">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button id="@Model.ID" type="button" class="btn btn-info btnUpdate">
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">Güncelle</font>
+                                    </font>
+                                </button>
+                                <br/>
+                                <p style="color:green; display:none" class="alertSuccesInfo">*Bilgiler başarılı bir şekilde güncellendi...</p>
+                                <p style="color:red; display:none" class="alertDangerInfo">*Güncelleme sırasında bir hata oluştu!</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </aside>
+</div>
+
+@section ExtraScript{
+    <!--dosya boyutunu al-->
+    <script>
+        var size;
+        $('#fileUpload').bind('change', function () {
+            size = this.files[0].size;
+        });
+    </script>
+    <!--form submit'i iptal et ve ajax ile gönder-->
+    <script>
+        $('#upload').submit(function (event) {
+            event.preventDefault();
+            if (size > 2097152) {
+                $(".alertSize").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                });
+            } else {
+                $.ajax({
+                    url: this.action,
+                    method: this.method,
+                    data: new FormData(this),
+                    dataType: 'json',
+                    cache: false,//file upload için
+                    contentType: false,//file upload için
+                    processData: false,//file upload için
+                }).done(function (d) {
+                    if (d.IsUploaded) {
+                        $(".alertSucces").show(400, function () {
+                            $(this).delay(3000);
+                            $(this).hide(400);
+                        });
+                        $("#profilePhoto").attr("src", d.photoPath);
+                    } else {
+                        $(".alertDanger").show(400, function () {
+                            $(this).delay(3000);
+                            $(this).hide(400);
+                        });
+                    }
+                }).fail(function () {
+                    $(".alertDanger").show(400, function () {
+                        $(this).delay(3000);
+                        $(this).hide(400);
+                    });
+                })
+            }
+        })
+    </script>
+    <!--bilgileri güncelle butonuna basılınca verileri al-->
+    <script>
+        var nameSurname;
+        $(".btnUpdate").click(function () {
+            var id = $(this).attr('id');
+            var name = $("#name").val();
+            var surname = $("#surname").val();
+            nameSurname = name + ' ' + surname;
+            var address = $("#address").val();
+            var mail = $("#mail").val();
+            var desc = $("#desc").val();
+            var linkedin = $("#linkedin").val();
+            var github = $("#github").val();
+            var twitter = $("#twitter").val();
+            var youtube = $("#youtube").val();
+            var facebook = $("#facebook").val();
+            var instagram = $("#instagram").val();
+            var data = {
+                ID: id,
+                Name: encodeURIComponent(name),
+                Surname: encodeURIComponent(surname),
+                Address: encodeURIComponent(address),
+                Mail: encodeURIComponent(mail),
+                Description: encodeURIComponent(desc),
+                Linkedin: encodeURIComponent(linkedin),
+                Github: encodeURIComponent(github),
+                Twitter: encodeURIComponent(twitter),
+                Youtube: encodeURIComponent(youtube),
+                Facebook: encodeURIComponent(facebook),
+                Instagram: encodeURIComponent(instagram)
+            };
+            UpdateInfo(data);
+        });
+    </script>
+
+    <script>
+        function UpdateInfo(data) {
+            $.ajax({
+                url: '/Login/PersonelInfoUpdate',
+                method: 'POST',
+                data: { person: data },
+                dataType: 'text',
+            }).done(function (d) {
+                if (d != null) {
+                    $(".alertSuccesInfo").show(400, function () {
+                        $(this).delay(3000);
+                        $(this).hide(400);
+                    });
+                    $("#nameSurname").text(nameSurname);
+                } else {
+                    $(".alertDangerInfo").show(400, function () {
+                        $(this).delay(3000);
+                        $(this).hide(400);
+                    });
+                }
+            }).fail(function () {
+                $(".alertDangerInfo").show(400, function () {
+                    $(this).delay(3000);
+                    $(this).hide(400);
+                })
+            });
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', 'ul li a', function () {
+                event.preventDefault();
+                window.location.href = $(this).attr('href');
+                window.setTimeout(1000, function () {
+                    $(this).addClass('active').siblings().removeClass('active');
+                });
+            });
+        });
+    </script>
+}

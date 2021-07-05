@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="true">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>Kişisel Web Sayfası Login Panel</title>
+    @Styles.Render("~/Content/css")
+    @RenderSection("ExtraStyle", false)
+</head>
+<body id="body">
+<section id="container">
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <!--logo start-->
+        <a href="~/Login/Index" class="logo">Login<span>Panel</span></a>
+        <!--logo end-->
+        <div class="nav notify-row" id="top_menu">
+        </div>
+        <div class="top-nav ">
+            <ul class="nav pull-right top-menu">
+                <li class="dropdown">
+                    <a href="~/Login/LogOut"><i class="icon-key"></i> Çıkış Yap</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li class="">
+                    <a name="About" class="@ViewBag.About" href="~/Login/About">
+                        <i class="icon-info"></i>
+                        <span>Hakkında</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a name="Experience" class="@ViewBag.Experience" href="~/Login/Experience">
+                        <i class="icon-suitcase"></i>
+                        <span>İş Tecrübesi</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a name="Education" class="@ViewBag.Education" href="~/Login/Education">
+                        <i class="icon-pencil"></i>
+                        <span>Eğitim</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a name="Skills" class="@ViewBag.Skills" href="~/Login/Skills">
+                        <i class="icon-cogs"></i>
+                        <span>Yetenekler</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a name="Interests" class="@ViewBag.Interests" href="~/Login/Interests">
+                        <i class="icon-star"></i>
+                        <span>İlgi Alanları</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a name="Award" class="@ViewBag.Award" href="~/Login/Award">
+                        <i class="icon-trophy"></i>
+                        <span>Ödüller</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a name="Password" class="@ViewBag.LoginInfo" href="~/Login/LoginInfo">
+                        <i class="icon-key"></i>
+                        <span>Giriş Bilgilerini Değiştir</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper renderBody">
+            @RenderBody()
+        </section>
+    </section>
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">
+            <a href="~/Login/Index" @*class="go-top"*@>
+                2019 &copy; Login Panel.
+                @*<i class="icon-angle-up"></i>*@
+            </a>
+        </div>
+    </footer>
+    <!--footer end-->
+</section>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryother")
+@Scripts.Render("~/bundles/other")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("ExtraScript", false)
+@*<script>
+            var clickedLink;
+            $(document).ready(function () {
+                $(document).on('click', 'ul li a', function (event) {
+                    clickedLink = this;
+                    event.preventDefault();
+                    window.location.href = $(clickedLink).attr('href');
+                    alert(document.readyState);
+                    //document.onreadystatechange = function () {
+                    //    if (document.readyState === 'complete') {
+                    //        alert("merhaba");
+                    //        $(clickedLink).addClass('active').siblings().removeClass('active');
+                    //    }
+                    //}
+                        //setTimeout(function () {
+                        //    alert("merhaba");
+                        //    //$(clickedLink).addClass('active').siblings().removeClass('active');
+                        //}, 3000);
+
+                });
+            });
+        </script>*@
+</body>
+</html>
